@@ -35,7 +35,12 @@ document.addEventListener('DOMContentLoaded', function() {
         this.formActualizar = true;
       },
       borrarPersona: function(persona_id) {
-        this.personas.splice(persona_id, 1);
+        var conf = confirm('Seguro De Que Quiere Borrar esta persona');
+        if (conf === true) {
+          this.personas.splice(persona_id, 1);
+        } else {
+          return false;
+        }
       },
       guardarActualizacion: function(persona_id) {
         this.formActualizar = false;
