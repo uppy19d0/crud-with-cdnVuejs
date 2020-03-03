@@ -1,154 +1,144 @@
 <html lang="es">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Persons</title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
-      integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
-      crossorigin="anonymous"
-    />
+    <title>LISTA DE LIBROS</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  </head>
+</head>
 
-  <body>
+<body>
     <div id="appCruds">
-      <nav class="navbar navbar-dark bg-primary">
+        <nav class="navbar navbar-dark bg-primary">
+            <div class="container">
+                <a href="#" class="navbar-brand">
+                    <h3 style="display: flex;justify-content: flex-end;">
+                        Create Books
+                    </h3>
+                </a>
+            </div>
+        </nav>
         <div class="container">
-          <a href="#" class="navbar-brand">
-            <h3 style="display: flex;justify-content: flex-end;">
-              Create Person
-            </h3></a
-          >
-        </div>
-      </nav>
-      <div class="container">
-        <div class="row mt-5">
-          <div class="col-sm-4">
-            <div class="card">
-              <div class="card-header">
-                <img
-                  alt="Vue logo"
-                  height="120px"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSdu4y3ZuUt-cSic11tj2_9n3QkXumoial75Acq157fbpOy5qS1"
-                />
-                <h3>Add A New Person</h3>
-              </div>
-              <div class="card-body">
-                <form @submit.prevent="addPerson">
-                  <div class="form-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      @keyup.enter="crearPersona"
-                      placeholder="Name"
-                      v-model="nombre"
+            <div class="row mt-9">
+                <div class="col-sm-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <img alt="Vue logo" height="120px" src="https://findicons.com/files/icons/2799/flat_icons/256/book_add.png" />
+                            <h3>Add A New LIBRO</h3>
+                        </div>
+                        <div class="card-body">
+                            <form @submit.prevent="addBook">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" @keyup.enter="crearLibros" placeholder="Nombre del Libro" v-model="nombre_del_libro" />
+                                    <input type="text" class="form-control" @keyup.enter="crearLibros" placeholder="Autor" v-model="autor" />
+                                    <input type="text" class="form-control" @keyup.enter="crearLibros" placeholder="Genero" v-model="genero" />
+                                    <input type="number" class="form-control" @keyup.enter="crearLibros" placeholder="Page Number" v-model="numero_de_pagina" />
+                                    <input type="text" class="form-control" @keyup.enter="crearLibros" placeholder="Editora" v-model="editora" />
+                                    <input type="number" class="form-control" @keyup.enter="crearLibros" placeholder="Precio" v-model="precio" />
+                                </div>
+                                <input @click="crearLibros" type="button" value="Añadir" class="btn btn-success" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 text-center">
+                    <img alt="Vue logo" height="90px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAABIFBMVEX////ZlmY0mIbiV0w/ldQsgXL3y4s2f7SazMPASkDSrXcxj34yfbMuloMrgG9AlthXj71vs6YziJbXjlnFRTx3fW7LTkTlb2f68u3hT0jxr3v40I7wqHftmG7phGSZxLvglmSBoIDet37md29WmILhYVCYq7n9zYfXt4nxxoiDm3rUv56Hr6f40Zngll1dlcdUnteJwrfNlWnHclbJgV6Bkp62o4fKbmdXgqpRhHBHoI/EV0YljdHalJC8NyrgSDv43Nntm5W91NBhn5PP5ODq8vFHkIPE1+hnncdrq9yqzOrn7/ahyOjd7Ptin6DgqaXphX3yyceIlIbzuIx7inXslHnLjmXvpIJYj4tzl4F/tLWzsajJ0Nl0o82xxdrT2dFGsvrfAAADZElEQVR4nO3de1MSURiA8VXAJFmEopSsLE0rs4zuKeYFES+Z2N3K/P7fokVTz1HcfRdxdl94nr93mfObs8BeZvY4TrtbrqSMBgZ6fZstrbR9BJdbdTWbNYH+Pi/XzUc95lBVU6YvFeg7MM5GPeowVSxg8AweEktRD1veigWUTWGDWI164OJGW5lCT7gc9cDFTbcoHI164OIQIox/CBHGP4QI4x9ChPEPIcL4hxBh/EPYoULXLq7C2lrOaOb56dY3Gls1E7r5frN8E2IMhJu5jNGVZJPK5Q3Fwk1PZdQM2DB+1CvMSYAecUursGYBzxcm17UK92RTmEwOflIqFB6knvAaQoQIESJEiLCpsHfW7izwUDi8/dZs3L/60mJ8hME1hNuFQvqkQqKYKPq3UB9WJZz/YPjSNxOCihNtI16+sH8nPNAj1hUJ50xgWgZMJBYW1Qg/F1oSFpe0CHtvFFo4SD3heKcLE0MIESJE2C3C4OcWyoVuvmTW7OpJvTDw+hAhQoQIESJEiBAhwpgIrQLudp+kRzj1wuqWtC9ahO79q2ZjI32yRp5qFQqBfX0IESJso3DM/qWRpkf49aXVXWnftAhPn9MUhac0iv7xu+GsDSFCXcKOvLb4btZzW5rea4vO+8fvgrM2hAgRIkSIECFChAgRIkSIECFChAgRIkR4KOz8p9yvrO5I+6FF2AXPnrrt+SFChAgRIkSIECFChAgRIkQYldAsOXh+WoWTr80mffqpVPjIupv50KepVCcIH59/gxYhQoQIESJEiBAhQoQIESJEiFC1MP7voL2YUMN7hC8oFIQQIcJwQg8S6p63BuEbqyc+7SoV2s+eyj516Xv1ESJEiBAhQoQIESJEGA+hG/X6h3ti4a8Whb8jXsOyZgl9iOtVS5gSH6VOuiVh29YhlR6m5S1nupVJdPudiNeSdTYzEmJ5w9t0NTzRzXv7RbsesEds3Mg4AmYy3jfuzFewnKwdbFrJZsMQXdctHexnr+kcTCwuSGdwWNaftXdmuZlT7f092nJ/973ZA/8qo/v/91ucn7Oa8G2oviMcunNd2LOgjre8F67j/XrCJR24E/Jz9YVQfwj1h1B/CPWHUH8I9YdQfwj1h1B/CPWHUH8I9YdQfwj1h1B/CPWHUH8I9YdQfwj19w+tbfoLV/83ZgAAAABJRU5ErkJggg=="
                     />
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Lista de LIBROS</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Book Name</th>
+                                        <th>Autor</th>
+                                        <th>Genero</th>
+                                        <th>Cantidad de pagina</th>
+                                        <th>Editoria</th>
+                                        <th>Precio</th>
+                                        <th>Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tr v-for="(libro, index) in libros">
+                                    <td>
+                                        <span v-if="formActualizar && idActualizar == index">
+                        <input
+                          v-model="nombre_del_libroActualizar"
+                          type="text"
+                          class="form-control"
+                        />
+                      </span>
+                                        <span v-else>
+                        {{ libro.nombre_del_libro }}
+                      </span>
+                                    </td>
+                                    <td>
+                                        <span v-if="formActualizar && idActualizar == index">
+                        <input
+                          v-model="autorActualizar"
+                          type="text"
+                          class="form-control"
+                        />
+                      </span>
+                                        <span v-else>
+                        {{ libro.autor }}
+                      </span>
+                                    </td>
+                                    <td>
+                                        <span v-if="formActualizar && idActualizar == index">
+                        <input
+                          v-model="generoActualizar"
+                          type="text"
+                          class="form-control"
+                        />
+                      </span>
+                                        <span v-else>
+                        {{ libro.genero }}
+                      </span>
+                                    </td>
+
+                                    <td>
+                                        <span v-if="formActualizar && idActualizar == index">
                     <input
-                      type="text"
-                      class="form-control"
-                      @keyup.enter="crearPersona"
-                      placeholder="Last Name"
-                      v-model="apellido"
-                    />
-                    <input
+                      v-model="numero_de_paginaActualizar"
                       type="number"
                       class="form-control"
-                      @keyup.enter="crearPersona"
-                      placeholder="Age"
-                      v-model="edad"
                     />
+                  </span>
+                                        <span v-else>
+                    {{libro.numero_de_pagina}}
+                  </span>
+                                    </td>
+                                    <td>
+                                        <span v-if="formActualizar && idActualizar == index">
                     <input
+                      v-model="editoraActualizar"
                       type="text"
                       class="form-control"
-                      @keyup.enter="crearPersona"
-                      placeholder="Birthday"
-                      v-model="birthday"
                     />
-                  </div>
+                  </span>
+                                        <span v-else>
+                    {{ libro.editora}}
+                  </span>
+                                    </td>
+                                    <td>
+                                        <span v-if="formActualizar && idActualizar == index">
                   <input
-                    @click="crearPersona"
-                    type="button"
-                    value="Añadir"
-                    class="btn btn-success"
+                    v-model="precioActualizar"
+                    type="number"
+                    class="form-control"
                   />
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-8 text-center">
-            <img
-              alt="Vue logo"
-              height="90px"
-              src="https://static.vecteezy.com/system/resources/previews/000/566/937/non_2x/vector-person-icon.jpg"
-            />
-            <div class="card">
-              <div class="card-header">
-                <h3>Lista de Persona</h3>
-              </div>
-              <div class="card-body">
-                <table class="table table-striped table-bordered">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Last Name</th>
-                      <th>Age</th>
-                      <th>Birthday</th>
-                    </tr>
-                  </thead>
-                  <tr v-for="(persona, index) in personas">
-                    <td>
-                      <span v-if="formActualizar && idActualizar == index">
-                        <input
-                          v-model="nombreActualizar"
-                          type="text"
-                          class="form-control"
-                        />
-                      </span>
-                      <span v-else>
-                        {{ persona.nombre }}
-                      </span>
-                    </td>
-                    <td>
-                      <span v-if="formActualizar && idActualizar == index">
-                        <input
-                          v-model="apellidoActualizar"
-                          type="text"
-                          class="form-control"
-                        />
-                      </span>
-                      <span v-else>
-                        {{ persona.apellido }}
-                      </span>
-                    </td>
-                    <td>
-                      <span v-if="formActualizar && idActualizar == index">
-                        <input
-                          v-model="edadActualizar"
-                          type="text"
-                          class="form-control"
-                        />
-                      </span>
-                      <span v-else>
-                        {{ persona.edad }}
-                      </span>
-                    </td>
-                    <td>
-                      <span v-if="formActualizar && idActualizar == index">
-                        <input
-                          v-model="birthdayActualizar"
-                          type="text"
-                          class="form-control"
-                        />
-                      </span>
-                      <span v-else>
-                        {{ persona.birthday }}
-                      </span>
-                    </td>
-                    <td>
-                      <span v-if="formActualizar && idActualizar == index">
+                </span>
+                                        <span v-else>
+                  {{ libro.precio}}
+                </span>
+                                    </td>
+                                    <td>
+                                        <span v-if="formActualizar && idActualizar == index">
                         <button
                           @click="guardarActualizacion(index)"
                           class="btn btn-success"
@@ -156,7 +146,7 @@
                           Guardar
                         </button>
                       </span>
-                      <span v-else>
+                                        <span v-else>
                         <button
                           @click="verFormActualizar(index)"
                           class="btn btn-warning"
@@ -164,21 +154,22 @@
                           Actualizar
                         </button>
                         <button
-                          @click="borrarPersona(index)"
+                          @click="borrarBook(index)"
                           class="btn btn-danger"
                         >
                           Borrar
                         </button>
                       </span>
-                    </td>
-                  </tr>
-                </table>
-              </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
     <script src="vuejs.js"></script>
-  </body>
+</body>
+
 </html>
