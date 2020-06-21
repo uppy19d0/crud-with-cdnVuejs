@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
             autor: '',
             genero: '',
             numero_de_pagina: '',
-            fecha_de_lanzamiento: '',
             editora: '',
             precio: '',
             // actualicacion
